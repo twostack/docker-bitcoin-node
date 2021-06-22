@@ -24,6 +24,12 @@ COPY bitcoin.conf /usr/var/bitcoin-data
 
 COPY scheduler.txt /tmp
 
+COPY bashrc /root/.bashrc
+
 RUN crontab /tmp/scheduler.txt
 
-ENTRYPOINT ["bitcoind", "-datadir=/usr/var/bitcoin-data"]
+COPY launch.sh /usr/bin
+
+RUN chmod +x /usr/bin/launch.sh
+
+ENTRYPOINT ["/bin/bash", "/usr/bin/launch.sh"]

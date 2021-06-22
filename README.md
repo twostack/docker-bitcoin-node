@@ -20,11 +20,17 @@ $ docker build . -t twostack_node
 $docker exec -i -t <INSERT_CONTAINER_ID_HERE> /bin/bash
 ``` 
 
-## Generate a new block
-Once inside the container command prompt, 
+## Working with `bitcoin-cli`
+Once inside the container command prompt, you can use the `bitcoin-cli` command. 
+The `bitcoin-cli` command has been aliased so you don't have to specify the data folder
+where the RPC authentication cookies live. 
+
+*NOTE* : A cron job has been scheduled to run every ten minutes inside the container. This cron job will generate a new block automatically. Also note that this job writes to the `/usr/var/coinbase.log` file inside the docker container. Writing data inside a container filesystem is inefficient, so please take care not to leave this container running when not in use. 
+
+E.g. you can do : 
 
 ```
-bitcoin-cli -datadir=/usr/var/bitcoin-data generate 1
+bitcoin-cli getblockcount
 ```
 
 # Further Reading
