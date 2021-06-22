@@ -1,5 +1,4 @@
 # Author: Stephan M. February <stephan@twostack.org>
-#
 
 FROM ubuntu:20.04
 
